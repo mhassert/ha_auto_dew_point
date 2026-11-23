@@ -1,0 +1,19 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Auto Dew Point already configured."
+        },
+        "step": {
+            "user": {
+                "description": "Auto creates a dew point sensor for devices with exactly one temperature and one humidity sensor."
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "dew_point": {
+                "name": "Dew Point"
+            }
+        }
+    }
+}
