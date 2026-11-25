@@ -2,7 +2,7 @@
 
 import logging
 import math
-from typing import override
+from typing import TYPE_CHECKING, override
 
 from homeassistant.components.sensor import (
     SensorDeviceClass,
@@ -21,10 +21,12 @@ from homeassistant.core import (
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity import get_device_class, get_unit_of_measurement
-from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 from homeassistant.helpers.event import async_track_state_change_event
 
 from .const import DOMAIN
+
+if TYPE_CHECKING:
+    from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -312,14 +314,17 @@ class AutoDewPointSensor(SensorEntity):
             if not math.isfinite(temperature) or not math.isfinite(humidity):
                 self._attr_native_value = None
                 return
-            if not 0 < humidity <= 100:
+            max_humidity = 100
+            if not 0 < humidity <= max_humidity:
                 self._attr_native_value = None
                 return
             if self._temperature_unit == UnitOfTemperature.FAHRENHEIT:
                 temperature = (temperature - 32) * 5 / 9
 
             a, b = 17.62, 243.12
-            gamma = math.log(humidity / 100.0) + (a * temperature) / (b + temperature)
+            gamma = math.log(humidity / max_humidity) + (a * temperature) / (
+                b + temperature
+            )
             self._attr_native_value = round((b * gamma) / (a - gamma), 2)
         except TypeError, ValueError, ZeroDivisionError, OverflowError:
             self._attr_native_value = None

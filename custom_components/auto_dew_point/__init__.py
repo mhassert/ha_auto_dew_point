@@ -1,10 +1,14 @@
 """Auto Dew Point integration."""
 
-from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import Platform
-from homeassistant.core import HomeAssistant
+from typing import TYPE_CHECKING
 
-from .sensor import DewPointConfigEntry
+from homeassistant.const import Platform
+
+if TYPE_CHECKING:
+    from homeassistant.config_entries import ConfigEntry
+    from homeassistant.core import HomeAssistant
+
+    from .sensor import DewPointConfigEntry
 
 _PLATFORMS: list[Platform] = [Platform.SENSOR]
 
