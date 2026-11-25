@@ -88,11 +88,11 @@ def scan_all_devices(
     async_add_entities: AddConfigEntryEntitiesCallback,
     known_unique_ids: set[str],
 ) -> None:
-    """Scan all devices and inspect them."""
+    """Scan all devices and child devices."""
     device_reg = dr.async_get(hass)
 
     _LOGGER.info("Scanning all devices")
-    for device in list(device_reg.devices):
+    for device in [*device_reg.devices, *device_reg.child_devices]:
         inspect_device(device, hass, async_add_entities, known_unique_ids)
 
 
