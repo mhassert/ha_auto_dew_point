@@ -1,0 +1,19 @@
+{
+    "config": {
+        "abort": {
+            "already_configured": "Auto Taupunkt bereits konfiguriert."
+        },
+        "step": {
+            "user": {
+                "description": "Erzeugt automatisch einen Taupuntsensor für Geräte mit genau einem Temperatur- und Luftfeuchtigkeitssensor."
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "dew_point": {
+                "name": "Taupunkt"
+            }
+        }
+    }
+}

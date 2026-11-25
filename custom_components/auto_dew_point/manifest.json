@@ -1,0 +1,16 @@
+{
+  "domain": "auto_dew_point",
+  "name": "Auto Dew Point",
+  "categories": [
+    "diy_makers"
+  ],
+  "codeowners": [
+    "@mhassert"
+  ],
+  "config_flow": true,
+  "documentation": "https://github.com/mhassert/ha_auto_dew_point",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/mhassert/ha_auto_dew_point/issues",
+  "single_config_entry": true,
+  "version": "0.1.0"
+}
